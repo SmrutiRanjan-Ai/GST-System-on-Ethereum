@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dapp Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">GST Blockchain System</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li id="register" class="nav-item">
+                <a class="nav-link" href="#">Register</a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        
+
+          <img src="https://static.gst.gov.in/uiassets/images/banner/banner_image_large.jpg" class="img-fluid" alt="...">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Accounts</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Create Invoice</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">List of Invoices</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="return-tab" data-bs-toggle="tab" data-bs-target="#gst-tab-pane" type="button" role="tab" aria-controls="gst-tab-pane" aria-selected="false">GST Return Filing</button>
+              </li>
+
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pay-tab" data-bs-toggle="tab" data-bs-target="#pay-tab-pane" type="button" role="tab" aria-controls="pay-tab-pane" aria-selected="false">Create Challan</button>
+              </li>
+           
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+
+                <div class="card text-center">
+                    <div class="card-header">
+                      GST Account
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Account Information</h5>
+                      <p class="card-text" id="accountnum"></p>
+                      <p class="card-text" id="accountbalance"></p>
+                      <a href="#" class="btn btn-primary">Check</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                      2 days ago
+                    </div>
+                  </div>
+                  <div class="text-center"><h6 > Credit Ledger</h6></div>
+
+                  <table id="creditTable" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Type</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="credit">
+                      
+                    </tbody>
+                  </table>
+                  <div class="text-center"><h6 > Debit Ledger</h6></div>
+                  <table id="debitTable" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Receipt Code</th>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Type</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="debit">
+                      
+                    </tbody>
+                  </table>
+                  
+            </div>
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <br>
+                <form id="invoiceform">
+                    <div class="row mb-3">
+                      <label for="Buyer" class="col-sm-2 col-form-label">Buyer Address</label>
+                      <div class="col-sm-10">
+                        <input id="buyer" type="text" class="form-control" placeholder="Buyer Address" aria-label="Buyer">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="totalgst" class="col-sm-2 col-form-label">Total GST</label>
+                        <div class="col-sm-10">
+                          <input id="totalgst" type="number" class="form-control" placeholder="Total GST" aria-label="totalgst">
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label for="total" class="col-sm-2 col-form-label">Total Invoice Amount</label>
+                        <div class="col-sm-10">
+                          <input id="total" type="number" class="form-control" placeholder="Total" aria-label="total">
+                        </div>
+                      </div>
+                    
+                      <button id="sep" type="button" class="btn btn-primary">Create Invoice</button>
+                      
+                    
+                  </form>
+            </div>
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                <br>
+                <table id="results" class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Buyer</th>
+                        <th scope="col">Seller</th>
+                        <th scope="col">Invoice Code</th>
+                        <th scope="col">Total Gst</th>
+                        <th scope="col">Total Invoice Amount</th>
+                        <th scope="col">Timestamp</th>
+                      </tr>
+                    </thead>
+                    <tbody id="body">
+                      
+                    </tbody>
+                  </table>
+            </div>
+            <div class="tab-pane fade" id="gst-tab-pane" role="tabpanel" aria-labelledby="return-tab" tabindex="0">
+                <br>
+                <form id="payment">
+                    <div class="row mb-3">
+                        <label for="startTimestamp" class="col-sm-2 col-form-label">Start Timestamp</label>
+                        <div class="col-sm-10">
+                          <input id="startTimestamp" type="text" class="form-control" placeholder="start Timestamp" aria-label="startTimestamp">
+                        </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="endTimestamp" class="col-sm-2 col-form-label">End Timestamp</label>
+                            <div class="col-sm-10">
+                              <input id="endTimestamp" type="number" class="form-control" placeholder="Total" aria-label="endTimestamp">
+                            </div>
+                          </div>
+                          <button id="createReturn" type="button" class="btn btn-primary">Create Return</button>
+
+                </form>
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Txn Type</th>
+                        <th scope="col">Amount</th>
+    
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        
+                        <td>Total GST Paid</td>
+                        <td id="total1"></td>
+                        
+                      </tr>
+                      <tr>
+                        
+                        <td>Total Input Tax Credit</td>
+                        <td id="total2"></td>
+                        
+                      </tr>
+                      <tr>
+                        
+                        <td>Total GST Paid in Cash</td>
+                        <td id="total3"></td>
+                        
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="tab-pane fade" id="pay-tab-pane" role="tabpanel" aria-labelledby="pay-tab" tabindex="0">
+                <br>
+                <form id="payment">
+                    <div class="row mb-3">
+                        <label for="PayBuyer" class="col-sm-2 col-form-label">Buyer Address</label>
+                        <div class="col-sm-10">
+                          <input id="paybuyer" type="text" class="form-control" placeholder="Buyer Address" aria-label="PayBuyer">
+                        </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="payint" class="col-sm-2 col-form-label">Payable Amount</label>
+                            <div class="col-sm-10">
+                              <input id="payint" type="number" class="form-control" placeholder="Total" aria-label="payint">
+                            </div>
+                          </div>
+                          <button id="pay" type="button" class="btn btn-primary">Pay amount</button>
+
+                </form>
+
+            </div>
+          </div>
+          
+
+          <div id="liveAlertPlaceholder"></div>
+             
+          
+    </div>
+      
+    
+    <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
+    <script type="text/javascript" src="src/utils.js"></script>
+    <script type="text/javascript" src ="src/index.js"></script>
+</body>
+</html>
